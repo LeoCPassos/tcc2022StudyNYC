@@ -1,0 +1,28 @@
+
+label#lblNomeAluno {
+    text-align: left;
+    font-size: xx-large;
+}
+
+label#lblRNA {
+    text-align: left;
+    font-size: large;
+    color: white;
+}
+
+@media screen and (max-width: 768px) {}
+
+a#linkEditPerfil {
+    padding: 0px 18px;
+
+    color: white;
+}
+
+a#sair{
+    color: var(--text-color);
+}
+
+a#sair:hover{
+    text-decoration: none;
+    color: var(--secundary-bgcolor);
+}

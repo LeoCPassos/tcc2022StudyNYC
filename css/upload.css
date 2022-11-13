@@ -1,0 +1,14 @@
+.postForm {
+    background-color: white;
+    text-align: center;
+}
+
+
+.input-span {
+    text-align: left;
+}
+
+.note-editor {
+    font-weight: 400;
+    color: black !important;
+}

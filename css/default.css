@@ -1,0 +1,45 @@
+p {
+    color: white;
+    font-size: large;
+}
+
+.materia {
+    padding: 10px;
+    margin: 8px 8px 8px 8px;
+    padding-top: 24px;
+    width: 140px;
+    /* max-width: 192px;
+    min-width: 120px; */
+
+    user-select: none;
+}
+
+.materia img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.materia:hover {
+    background-color: var(--secundary-bgcolor);
+    cursor: pointer;
+}
+
+.quemSomosBanner {
+    background-color: var(--secundary-bgcolor);
+    text-align: left;
+    height: 200px;
+
+    border-radius: 10px;
+
+    position: relative;
+}
+
+.quemSomosBanner h1 {
+    position: absolute;
+    margin: 0;
+    top: 40%;
+    -ms-transform: translateY(-50%);
+    margin-left: 60px;
+    color: white;
+}

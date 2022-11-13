@@ -1,0 +1,227 @@
+.contatos-lista {
+    height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: block;
+    position: relative;
+
+    margin-top: 20px;
+
+}
+
+.contato-selecionado {
+    top: 0;
+    position: absolute;
+    background-color: var(--secundary-bgcolor);
+    color: white;
+
+    border-bottom: 2px solid;
+    border-color: var(--primary-bgcolor);
+
+    width: calc(100% - 60px);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.contato {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    color: white;
+
+    border-bottom: solid 2px;
+    border-color: var(--secundary-bgcolor);
+
+    height: 88px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+    user-select: none;
+}
+
+.contato .contato-mensagem {
+    font-size: medium;
+    color: var(--text-color);
+    height: 18px;
+    text-align: left;
+
+    display: inline-block;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.contato-link {
+    text-decoration: none !important;
+}
+
+.contato:hover {
+
+    background-color: var(--secundary-bgcolor);
+}
+
+.contato {
+    text-decoration: none !important;
+}
+
+.contato label {
+    margin-left: 20px;
+}
+
+.contato img {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    float: left;
+}
+
+.chat {
+    background: var(--primary-bgcolor);
+    width: 100%;
+
+    text-align: left;
+
+    background: var(--secundary-bgcolor);
+    padding: 10px;
+    padding-top: 80px;
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    height: 600px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+.input-message-div {
+    position: absolute;
+    width: calc(100% - 30px);
+
+    background: var(--secundary-bgcolor);
+
+    overflow: hidden;
+    height: 70px;
+
+
+    padding: 10px;
+}
+
+.input-message {
+    width: calc(100% - 120px);
+    border-radius: 10px;
+
+    background: var(--primary-bgcolor);
+}
+
+.send-message {
+    padding: 8px;
+    background: var(--primary-bgcolor) !important;
+    color: var(--text-color) !important;
+    border-radius: 8px;
+
+    transform: translateY(-2px);
+    /* cursor: pointer; */
+}
+
+.send-message:hover {
+    background: var(--text-color) !important;
+    color: white !important;
+}
+
+.message {
+
+    display: block;
+    padding: 10px;
+    border-radius: 10px;
+
+    margin-bottom: 10px;
+
+    overflow: hidden;
+    word-break: break-word;
+
+    max-width: 280px;
+}
+
+.message img {
+    width: 100%;
+}
+
+.message.sender {
+    background: var(--primary-bgcolor);
+    text-align: right;
+    float: right;
+}
+
+.message.recipient {
+    background: white;
+    float: left;
+    text-align: left;
+
+    overflow: hidden;
+}
+
+
+
+/*@media screen and (max-width: 768px) {
+    .chat{
+        
+    }
+}*/
+
+.input-search-contatos {
+    background: transparent;
+
+    border-radius: 0px;
+    border-width: 2px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-color: var(--secundary-bgcolor);
+
+    transition: 0.05s ease;
+
+    padding: 8px 40px;
+}
+
+.input-search-contatos:active {}
+
+@media screen and (max-width: 768px) {
+    .chat {
+        display: none;
+    }
+
+    .input-message-div {
+        display: none;
+    }
+}
+
+
+/* width */
+.contatos-lista::-webkit-scrollbar,
+.chat::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.contatos-lista::-webkit-scrollbar-track,
+.chat::-webkit-scrollbar {
+    background: transparent;
+}
+
+/* Handle */
+.contatos-lista::-webkit-scrollbar-thumb {
+    /*background: #888;*/
+    background: var(--secundary-bgcolor);
+}
+
+.chat::-webkit-scrollbar-thumb {
+    background: var(--primary-bgcolor);
+}
+
+/* Handle on hover */
+/*.contatos-lista::-webkit-scrollbar-thumb:hover, .chat::-webkit-scrollbar {
+    background: calc(var(--secundary-bgcolor) + #101010);
+}*/
