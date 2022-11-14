@@ -280,7 +280,7 @@ img.pfpIcon {
     color: white;
     width: 100%;
 
-    animation: shake 0.5s forwards ease-out normal 1,  fadein 1s forwards ease-out normal 1;
+    animation: shake 0.5s forwards ease-out normal 1, fadein 1s forwards ease-out normal 1;
 }
 
 .successBox {

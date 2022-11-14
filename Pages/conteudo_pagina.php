@@ -3,10 +3,13 @@
 
 include_once('php/banco.php');
 
-$sql = 'SELECT *, tb06_nome_disciplina, tb07_nome_serie
+session_start();
+
+$sql = 'SELECT *, tb06_nome_disciplina, tb07_nome_serie, tb01_nome, tb01_Id_Usuario
 FROM tb04_conteudos
 INNER JOIN tb06_disciplinas ON  tb06_id_disciplina = tb04_materia 
 INNER JOIN tb07_series ON tb04_serie = tb07_id_serie
+INNER JOIN tb01_usuario ON tb04_autor = tb01_Id_Usuario
 WHERE tb04_Id_Conteudo = ?';
 $p = $banco->prepare($sql);
 $p->execute([$_GET['post']]);
@@ -58,6 +61,16 @@ if ($_GET['post'] == '' || $conteudo == array()) {
 
     <div class="row">
         <div class="col-md-6 col-sm-12">
+            <h4>
+                Autor:
+                <?php
+                $linkStr = '<a href="?page=chat&contato=' . $conteudo['tb01_Id_Usuario'] . '">';
+
+                echo $conteudo['tb01_Id_Usuario'] != $_SESSION['id'] ? $linkStr : '';
+                echo $conteudo['tb01_nome'];
+                echo $conteudo['tb01_Id_Usuario'] != $_SESSION['id'] ? '</a>' : '';
+                ?>
+            </h4>
         </div>
         <div class="col-md-4 col-sm-12">
             <h4>Matéria: <?php echo $conteudo['tb06_nome_disciplina']; ?></h4>
@@ -70,7 +83,7 @@ if ($_GET['post'] == '' || $conteudo == array()) {
 
 
     <?php
-    if ($_SESSION['type'] == 1) {
+    if ($_SESSION['type'] == 1 && $_SESSION['id'] == $conteudo['tb04_autor']) {
         echo '<div class="row">';
         echo '<div class="col">';
         echo '<a href="?page=upload&id=' . $conteudo['tb04_Id_Conteudo'] . '"><button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -88,9 +101,17 @@ if ($_GET['post'] == '' || $conteudo == array()) {
 
     <div class="row" style="margin-top: 20px;margin-bottom: 60px;">
         <div class="col-md-12 text-break">
-            <div class='descricao'>
-                <?php echo $conteudo['tb04_descricao']; ?>
+
+            <div id='descricao' class='descricao'>
             </div>
+
+            <script>
+                var descricao = '<?php echo $conteudo['tb04_descricao'] ?>';
+                descricao = descricao.replaceAll('<img ', '<img class="img-fluid" ');
+                descricao = descricao.replaceAll('<iframe ', '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" ');
+                descricao = descricao.replaceAll('</iframe>', '</iframe></div>');
+                document.getElementById('descricao').innerHTML = descricao;
+            </script>
         </div>
     </div>
 

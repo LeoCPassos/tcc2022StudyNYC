@@ -2,14 +2,12 @@
 
 require('banco.php');
 
+session_start();
+
 try {
     if ($banco_info["connected"]) {
         // Comando de inserção dos conteudos
         $sql = 'INSERT INTO tb04_conteudos VALUES (NULL, ?, ?, ?, ?, ?)';
-
-        // foreach ($_POST as $elemento) {
-        //     print $elemento . "<br>";
-        // }
 
         // Prepara e executa o comando
         $banco->prepare($sql)->execute(
@@ -18,9 +16,7 @@ try {
                 $_POST["materia"],
                 $_POST["serie"],
                 $_POST["editordata"],
-                //  $_GET["upload"]
-                // "",
-                ""
+                $_SESSION['id']
             ]
         );
     } else {
