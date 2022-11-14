@@ -16,16 +16,6 @@ $p->execute([$_GET['post']]);
 $conteudo = $p->fetchAll()[0];
 
 if ($_GET['post'] == '' || $conteudo == array()) {
-    // echo '
-    // <title>NYC</title>
-    // <div class="container">
-    //     <div class="row">
-    //         <div class="col-12">
-    //             <h1>Essa página não existe!</h1>
-    //         </div>
-    //     </div>
-    // </div>
-    // ';
     include_once('manutencao.html');
     include_once('topnav.php');
     die();
