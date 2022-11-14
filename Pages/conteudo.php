@@ -7,33 +7,24 @@
 
 include_once 'php/banco.php';
 
-// // Faz o select retornando apenas o usuario que tiver o login e a senha iguais aos inseridos
-// $cmd = 'SELECT * FROM  tb04_conteudos';
-// // Executa o comando
-// $stmt = $banco->prepare($cmd);
-// $stmt->execute();
-// // Coloca os valores retornados pelo banco na variavel "posts"
-// $posts = $stmt->fetchAll();
-
-$sql = 'SELECT * FROM tb06_disciplinas';
-$p = $banco->prepare($sql);
+// Seleciona as matérias do banco
+$p = $banco->prepare('SELECT * FROM tb06_disciplinas');
 $p->execute([]);
 $materias = $p->fetchAll();
-
-// print_r($materias);
-
 ?>
 
 <body>
     <div class="container">
         <div class="col">
             <?php
+            // Mostra na tela os containers de todas as matérias cadastradas no banco
             foreach ($materias as $materia) {
                 echo '<div style="transform: translateY(-80px);" id="' . $materia["tb06_nome_disciplina"] . '"></div>';
                 echo '<div class="row">';
                 echo '<h2>' . $materia["tb06_nome_disciplina"] . ':</h2>';
                 echo '</div>';
 
+                // Seleciona os conteudos da matéria desse container
                 $sql = 'SELECT * 
                 FROM tb04_conteudos 
                 INNER JOIN tb07_series
@@ -45,9 +36,10 @@ $materias = $p->fetchAll();
                 $posts = $p->fetchAll();
 
                 echo '<div class="lista row" style="height: 600px;">';
-                
+                // Checa se há algum post nessa matéria
                 if ($posts != array()) {
                     foreach ($posts as $post) {
+                        // Se tiver algum post nessa matéria, mostra na tela todos os posts no container
                         echo '<div style="transform: translateY(-160px);" id="' . $post['tb04_Id_Conteudo'] . '"></div>';
                         echo '<a class="item" href="?page=conteudo&post=' . $post['tb04_Id_Conteudo'] . '" alt="' . $post['tb04_serie'] . '">';
                         echo '<div class="post">';
@@ -59,6 +51,7 @@ $materias = $p->fetchAll();
                     }
                 }
                 else{
+                    // Se não tiver, mostra na tela uma mensagem dizendo que não há matérias
                     echo '<div class="col-12" style="margin-top: 60px;">';
                     echo '<h2 style="text-align: center;">Está vazio...</h2>';
                     echo '</div>';

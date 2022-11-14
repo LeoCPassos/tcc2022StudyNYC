@@ -30,12 +30,15 @@
             </div>
 
             <form method="post" action="php/cadastrar_aluno.php">
+                <!-- Campo do nome -->
                 <div class="row">
                     <div class="col">
                         <label style="width: 50px; text-align: center;">Nome:</label>
                         <input class="input-text onlyLetterNumbers" type="text" id="txtNome" name="nome" placeholder="Digite seu nome." required>
                     </div>
                 </div><br>
+
+                <!-- Campo do login -->
                 <div class="row">
                     <div class="col">
                         <label style="width: 50px; text-align: center;">Login:</label>
@@ -43,6 +46,7 @@
                     </div>
                 </div><br>
 
+                <!-- Campos de senha -->
                 <div class="row">
                     <div class="col">
                         <label style="width: 50px; text-align: center;">Senha:</label>
@@ -61,10 +65,12 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-1"></div>
 
+                    <!-- Botão de cadastrar -->
                     <div class="col-md-3 col-sm-5">
                         <input type="submit" value="Cadastrar"></input>
                     </div>
 
+                    <!-- Botão de voltar -->
                     <div class="col-md-3 col-sm-5">
                         <a href="?"><button type="button">Voltar</button></a>
                     </div>
@@ -78,6 +84,8 @@
                     <div class="col-sm-10 col-md-4">
                         <?php
                         session_start();
+
+                        // Mostra erro de cadastro bem sucedido
                         if (isset($_SESSION['cadastroSucesso'])) {
                             echo '<div class="successBox">';
                             echo '<p>Conta cadastrada com sucesso.</p>';
@@ -85,6 +93,7 @@
 
                             unset($_SESSION['cadastroSucesso']);
                         }
+                        // Mostra erro de cadastro mal sucedido
                         if (isset($_SESSION['cadastroErro'])) {
                             echo '<div class="errorBox">';
                             echo '<p>Esse login já foi cadastrado.</p>';
@@ -92,7 +101,7 @@
 
                             unset($_SESSION['cadastroErro']);
                         }
-
+                        // Mostra erro de confirmação de senha falha
                         if (isset($_SESSION['senhaErro'])) {
                             echo '<div class="errorBox">';
                             echo '<p>As senhas não batem.</p>';
@@ -100,7 +109,6 @@
 
                             unset($_SESSION['senhaErro']);
                         }
-
                         ?>
                     </div>
                     <div class="col-sm-1 col-md-4">

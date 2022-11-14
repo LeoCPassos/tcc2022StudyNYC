@@ -6,6 +6,7 @@
 <?php
 include_once("php/banco.php");
 
+// Seleciona todas as matérias
 $sql = 'SELECT * FROM tb06_disciplinas';
 $p = $banco->prepare($sql);
 $p->execute([]);
@@ -28,6 +29,7 @@ $materias = $p->fetchAll();
         <div class="row justify-content-center">
             <?php
             foreach ($materias as $k) {
+                // Mostra todas as matérias na tela principal
                 echo '
                 <a style="height: fit-content;" href="?page=conteudo#' . $k['tb06_nome_disciplina'] . '">
                     <div class="materia">

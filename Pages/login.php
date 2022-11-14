@@ -61,7 +61,9 @@
                             <div class="col-sm-10 col-md-8">
                                 <?php
                                 session_start();
+                                // Checa se o servidor retornou a falha no login
                                 if (isset($_SESSION['loginFalha'])) {
+                                    // Mostra na tela o erro
                                     echo '<div class="errorBox">';
                                     echo '<p>Login ou senha incorretos.</p>';
                                     echo '</div>';

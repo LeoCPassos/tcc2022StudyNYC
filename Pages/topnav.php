@@ -16,7 +16,7 @@
 
     <?php
     $uploadActive = $_GET["page"] == "upload" ? "active" : "";
-
+    // Mostrar o botão de upload apenas para professores/administradores
     if ($_SESSION['type'] == 1)
         echo '<a id="navbarUpload" class="' . $uploadActive . '" href="?page=upload">Upload</a>';
 

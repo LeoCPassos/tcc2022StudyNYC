@@ -8,6 +8,7 @@
 include_once 'php/banco.php';
 session_start();
 
+// Seleciona os contatos
 $cmd = 'SELECT tb01_nome, tb01_Id_Tipos, tb01_Id_Usuario
     FROM  tb01_usuario
     WHERE NOT `tb01_Id_Usuario` = ?
@@ -23,15 +24,18 @@ $perfil = $stmt->fetchAll();
 
 <div class="container" style="text-align: center;">
     <div class="row">
+
+    <!------------------------------------ Lista de contatos------------------------------------- -->
         <div class="col-sm-12 col-md-4">
             <input type="search" class="input-search-contatos">
             <div class="contatos-lista" style="height: 70vh;">
                 <?php
-
+                // Mostra na tela todos os contatos na lista
                 foreach ($perfil as $k) {
-                    // $style = $k['tb01_Id_Tipos'] == 1 ? 'style="color: red;"' : '' . '' . $k['tb01_nome'];
+                    // Checa se o perfil é um professor ou não
                     $prof = $k['tb01_Id_Tipos'] == 1 ? '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16"><path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/><path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z"/></svg>' : '';
                     
+                    // Seleciona a última mensagem enviada ou recebida desse perfil
                     $p = $banco->prepare('SELECT * FROM tb05_mensagem 
                     WHERE
                     (tb05_remetente = ? AND tb05_destinatario = ?) OR
@@ -44,15 +48,17 @@ $perfil = $stmt->fetchAll();
                         ]
                     );
                     $ultimaMensagem = $p->fetchAll()[0];
-
+                    
+                    // Adiciona o ícone de remetente caso a última mensagem seja do usuario logado
                     $a = $ultimaMensagem['tb05_remetente'] == $_SESSION['id'] ? '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg> ' : "";
                     
+                    // Mostra na lista de contatos o perfil e a última mensagem
                     print('
                     <a class="contato-link" href="?page=chat&contato=' . $k['tb01_Id_Usuario'] . '">
                         <div class="contato">
                             <img src="img/user/icon.png" style="filter: none; background: var(--secundary-bgcolor);">
                             <div class="row text-truncate">
-                                <label ' . $style . ' >' . $k['tb01_nome'] . " " . $prof . '</label>
+                                <label>' . $k['tb01_nome'] . " " . $prof . '</label>
                             </div>
                             <div class="row" class="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                 <label class="contato-mensagem">' . $a . $ultimaMensagem['tb05_mensagem'] . '</label>
@@ -64,8 +70,9 @@ $perfil = $stmt->fetchAll();
 
             </div>
         </div>
-        <div class="col-8 ">
 
+        <!------------------------------------------ Chat ---------------------------------------->
+        <div class="col-8 ">
             <div id="chat" style="height: 70vh;" class="chat">
                 <?php
 
@@ -166,6 +173,7 @@ $perfil = $stmt->fetchAll();
 
 
     <script>
+        // Da scroll para a mensagem mais recente ao abrir o chat
         try {
             var chat = document.getElementById("chat").childNodes;
             chat[chat.length - 4].scrollIntoView();

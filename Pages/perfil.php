@@ -13,6 +13,7 @@ $perfil = $stmt->fetchAll();
 ?>
 
 <?php
+// Caso não esteja logado mostrar um erro na tela
 if (!$_SESSION["logged"]) {
     echo "<h1>Não é possível Acessar esta página!</h1>";
     die();

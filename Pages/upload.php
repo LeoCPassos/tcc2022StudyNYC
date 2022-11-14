@@ -14,8 +14,10 @@
     <?php
     include_once("php/banco.php");
 
+    // Seleciona o conteúdo
     $sql = 'SELECT * FROM tb04_conteudos WHERE tb04_Id_Conteudo = ?';
 
+    // Checa se é um professor logando, se não for mostra o erro 404
     if ($_SESSION["type"] == 2) {
         // echo "<h1>Acesso negado!</h1>";
         include_once("pages/manutencao.html");
@@ -23,10 +25,12 @@
         die();
     }
 
+    // Seleciona todas as matérias do banco
     $p = $banco->prepare("SELECT * FROM tb06_disciplinas");
     $p->execute();
     $materias = $p->fetchAll();
 
+    // Seleciona todas as séries do banco
     $p = $banco->prepare("SELECT * FROM tb07_series");
     $p->execute();
     $series = $p->fetchAll();
@@ -38,6 +42,7 @@
         $p->execute([$_GET['id']]);
         $post = $p->fetchAll()[0];
 
+        // Verifica se o usuario quer editar um post existente ou quer fazer um novo post
         if ($post == array())
             echo '<form id="postForm" action="PHP/postar.php" method="post">';
         else {
@@ -57,13 +62,17 @@
                     <label class="input-span" style="width: 80px;">Título:</label>
                     <input id="titulo" name="titulo" class="input-text" type="text" required <?php echo 'value="' . $post['tb04_titulo'] . '"'; ?> placeholder="Escreva o título do post." style="width: calc(100% - 90px);">
                 </div>
-            </div><br>
+                <br><br><br>
+            </div>
             <div class="row">
+                <!------------------------- Materias ------------------------->
                 <div class="col-md-6 col-sm-12">
                     <label class="input-span" style="width: 80px;" for="materia">Matéria:</label>
                     <select id="materia" name="materia" class="input-text" style="width: calc(100% - 90px);" required>
                         <option value="" disabled selected>Escolha a matéria</option>
+                        <!--Placeholder-->
                         <?php
+                        // Mostra todos as matérias cadastradas como opções
                         foreach ($materias as $materia) {
                             $selected = $post['tb04_materia'] == $materia['tb06_id_disciplina'] ? 'selected' : '';
                             echo '<option value=' . $materia['tb06_id_disciplina'] . " " . $selected . '>';
@@ -73,12 +82,16 @@
                         ?>
                     </select>
                 </div>
+
+                <br><br><br>
+                <!------------------------------ Série ------------------------>
                 <div class="col-md-6 col-sm-12">
                     <label class="input-span" style="width: 80px;" for='serie'>Série:</label>
-                    <!-- <input id="serie" name="serie" class="input-text" type="number" min=1 max=3 required <?php echo isset($post['tb04_serie']) ? 'value=' . $post['tb04_serie'] : ""; ?> placeholder="Série." style="width: calc(100% - 90px);"> -->
                     <select id="serie" name="serie" class="input-text" style="width: calc(100% - 90px);" required>
                         <option value="" disabled selected>Escolha a série</option>
+                        <!--Placeholder-->
                         <?php
+                        // Mostra todos séries cadastradas como opções
                         foreach ($series as $serie) {
                             $selected = $post['tb04_serie'] == $serie['tb07_id_serie'] ? 'selected' : '';
                             echo '<option value=' . $serie['tb07_id_serie'] . " " . $selected . '>';
@@ -88,17 +101,18 @@
                         ?>
                     </select>
                 </div>
-            </div><br>
-        </div><br>
+                <br><br><br>
+            </div>
+        </div>
         <div class="row">
+            <!----------------------------------- Campo do corpo do post --------------------------------->
             <div class="col-12">
                 <textarea id="summernote" name="editordata" required><?php echo $post['tb04_descricao']; ?></textarea>
-
             </div>
         </div><br>
+
         <div class="row">
             <div class="col-sm-12 <?php echo $post == array() ? 'col-md-12' : 'col-md-6'; ?>" style="text-align: center;">
-                <!--<input type="submit" value="AAAA">-->
                 <button type="submit">
                     <?php echo $post == array() ?
                         '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16"><path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/></svg> Postar' :
@@ -107,8 +121,8 @@
                 </button>
             </div>
 
+            <!-- Mostar botão de 'voltar' apenas se tiver no modo de edição de post -->
             <div class="col-sm-12 col-md-6" style="text-align: center;<?php echo $post != array() ? '' : 'display: none;'; ?>">
-                <!--<input type="submit" value="AAAA">-->
                 <a href="?page=conteudo&post=<?php echo $_GET['id']; ?>">
                     <button type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
@@ -118,13 +132,12 @@
                     </button>
                 </a>
             </div>
-        </div><br>
+        </div>
         </form>
     </div>
 
-    <!-- <iframe name="resultado"></iframe> -->
-
     <script>
+        // Carrega o summernote
         $(document).ready(function() {
             $('#summernote').summernote({
                 toolbar: [

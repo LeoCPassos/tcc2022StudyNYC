@@ -15,13 +15,12 @@ $p = $banco->prepare($sql);
 $p->execute([$_GET['post']]);
 $conteudo = $p->fetchAll()[0];
 
+// Detectar se o ID do post é válido
 if ($_GET['post'] == '' || $conteudo == array()) {
     include_once('manutencao.html');
     include_once('topnav.php');
     die();
 }
-
-
 ?>
 
 <head>
@@ -56,6 +55,7 @@ if ($_GET['post'] == '' || $conteudo == array()) {
                 <?php
                 $linkStr = '<a href="?page=chat&contato=' . $conteudo['tb01_Id_Usuario'] . '">';
 
+                // Checa se o id logado é o mesmo do id do post, se não for então coloca um link no autor
                 echo $conteudo['tb01_Id_Usuario'] != $_SESSION['id'] ? $linkStr : '';
                 echo $conteudo['tb01_nome'];
                 echo $conteudo['tb01_Id_Usuario'] != $_SESSION['id'] ? '</a>' : '';
@@ -73,6 +73,7 @@ if ($_GET['post'] == '' || $conteudo == array()) {
 
 
     <?php
+    // Habilitar a opção de editar e excluir só para o autor do post
     if ($_SESSION['type'] == 1 && $_SESSION['id'] == $conteudo['tb04_autor']) {
         echo '<div class="row">';
         echo '<div class="col">';
@@ -96,6 +97,7 @@ if ($_GET['post'] == '' || $conteudo == array()) {
             </div>
 
             <script>
+                // Deixa os iframes e imagens responsívas
                 var descricao = '<?php echo $conteudo['tb04_descricao'] ?>';
                 descricao = descricao.replaceAll('<img ', '<img class="img-fluid" ');
                 descricao = descricao.replaceAll('<iframe ', '<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" ');
