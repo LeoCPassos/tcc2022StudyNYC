@@ -33,7 +33,7 @@ $materias = $p->fetchAll();
                 echo '
                 <a style="height: fit-content;" href="?page=conteudo#' . $k['tb06_nome_disciplina'] . '">
                     <div class="materia">
-                        <img src="http://pudim.com.br/pudim.jpg">
+                        <img src="img/materias/' . $k['tb06_id_disciplina'] . '.png">
                         <p>' . $k['tb06_nome_disciplina'] . '</p>
                     </div>
                 </a>

@@ -15,7 +15,7 @@
         <div>
             <div class="row">
                 <h1>
-                    <img src="img/NYC_Logo.jpg">
+                <img src="img/NYC_Logo.jpg" style="width: 200px;">
                 </h1>
             </div>
 

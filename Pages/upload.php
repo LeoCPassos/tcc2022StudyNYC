@@ -36,7 +36,7 @@
     $series = $p->fetchAll();
 
     ?>
-    <div class="container">
+    <div class="container" style="margin-bottom: 60px;">
         <?php
         $p = $banco->prepare($sql);
         $p->execute([$_GET['id']]);

@@ -28,6 +28,7 @@ try {
         } else {
             // Mostra na tela que o login não foi possível
             $_SESSION['loginFalha'] = true;
+            echo "banana";
         }
     }
 } catch (PDOException $ex) {
