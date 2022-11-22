@@ -30,10 +30,11 @@ $materias = $p->fetchAll();
             <?php
             foreach ($materias as $k) {
                 // Mostra todas as matérias na tela principal
+                $img = file_exists('img/materias/' . $k["tb06_id_disciplina"] . '.png') ? 'img/materias/' . $k["tb06_id_disciplina"] . '.png' : "http://pudim.com.br/pudim.jpg";
                 echo '
                 <a style="height: fit-content;" href="?page=conteudo#' . $k['tb06_nome_disciplina'] . '">
                     <div class="materia">
-                        <img src="img/materias/' . $k['tb06_id_disciplina'] . '.png">
+                        <img src="' . $img . '">
                         <p>' . $k['tb06_nome_disciplina'] . '</p>
                     </div>
                 </a>

@@ -18,9 +18,11 @@ if (isset($_SESSION['logged']) && !isset($_GET['page'])) {
         -->
 
     <!-- include libraries(jQuery, bootstrap) -->
+    <!-- <link rel="stylesheet" href="bootstrap-4.6.2/dist/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <!-- <script src="bootstrap-4.6.2/dist/js/bootstrap.bundle.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
     <link rel="icon" type="image/x-icon" href="img/NYC_Logo.jpg">
@@ -36,7 +38,7 @@ if (isset($_SESSION['logged']) && !isset($_GET['page'])) {
 
 </head>
 
-<body >
+<body style="height: 100%;">
 
     <div id="content" style="margin-top: 80px;">
         <?php
@@ -82,6 +84,7 @@ if (isset($_SESSION['logged']) && !isset($_GET['page'])) {
         ?>
 
     </div>
+    
     <script type="text/javascript" src="js/input_filters.js"></script>
 </body>
 

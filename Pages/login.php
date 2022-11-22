@@ -25,12 +25,12 @@
 <body style="text-align: center;">
     <div class="container">
         <div>
-            <div class="row">
-                <h1>
-                    <img src="img/NYC_Logo.jpg" style="width: 200px;">
-                </h1>
+            <div class="row justify-content-center">
+                <div class="col" style="text-align: center;">
+                    <img src="img/NYC_Logo.jpg" style="width: 200px;" >
+                </div>
             </div>
-            <div class="row align-items-center">
+            <div class="row align-items-center" style="text-align: center;">
                 <div class="col-md-5 col-sm-12">
                     <form method="post" action="PHP\logar.php">
                         <div class="row">

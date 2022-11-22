@@ -39,11 +39,12 @@ $materias = $p->fetchAll();
                 // Checa se há algum post nessa matéria
                 if ($posts != array()) {
                     foreach ($posts as $post) {
+                        $img = file_exists('img/materias/' . $post["tb04_materia"] . '.png') ? 'img/materias/' . $post["tb04_materia"] . '.png' : "http://pudim.com.br/pudim.jpg";
                         // Se tiver algum post nessa matéria, mostra na tela todos os posts no container
                         echo '<div style="transform: translateY(-160px);" id="' . $post['tb04_Id_Conteudo'] . '"></div>';
                         echo '<a class="item" href="?page=conteudo&post=' . $post['tb04_Id_Conteudo'] . '" alt="' . $post['tb04_serie'] . '">';
                         echo '<div class="post">';
-                        echo '<img src="img/materias/' . $post['tb04_materia'] . '.png">';
+                        echo '<img src="' . $img . '">';
                         echo '<label class="text-truncate">' . $post["tb04_titulo"] . '</label>';
                         echo '<label style="float: right; color: var(--text-color);">' . $post["tb07_nome_serie"] . '</label>';
                         echo '</div>';
