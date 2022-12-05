@@ -46,6 +46,8 @@ if (isset($_SESSION['logged']) && !isset($_GET['page'])) {
         if (!$_SESSION["logged"]) { // Se não estiver ou mostra a tela de login ou a tela de cadastro
             if (isset($_GET['cadastro']))
                 include_once("pages/cadastro_aluno.php");
+            else if (isset($_GET['cadastroProfessor']))
+                include_once("pages/cadastro_professor.php");
             else
                 include_once("pages/login.php");
         } else { // Se estiver logado...

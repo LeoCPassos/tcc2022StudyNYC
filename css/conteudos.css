@@ -1,15 +1,19 @@
 .post {
-    text-align: left;
+    /* text-align: left; */
     padding: 10px;
-    margin: 8px 8px 8px 8px;
+    /* margin: 8px 8px 8px 8px; */
     /* padding-top: 24px; */
     /*width: 120px;*/
     /* width: 300px; */
     /* max-width: 300px; */
-    width: 100%;
+    /* width: 100%; */
 
-    height: fit-content;
-    display: inline;
+    /* height: fit-content; */
+    /* display: inline; */
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .post label {
@@ -17,6 +21,7 @@
     margin-left: 10px;
     position: relative;
     color: white;
+    min-width: 290;
 }
 
 .post:hover {
@@ -29,7 +34,7 @@
 }
 
 .item {
-    display: contents;
+    /* display: contents; */
 }
 
 .lista {
@@ -42,6 +47,7 @@
     border: 4px solid;
     border-color: var(--text-color);
     border-radius: 10px;
+
 
     height: 192px;
 }
@@ -77,4 +83,22 @@ h4,
 h5,
 h6 {
     word-break: break-word;
+}
+
+@media only screen and (max-width: 600px) {
+    .post label {
+        max-width: 120px;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .post label {
+        max-width: 80px;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .post label {
+        max-width: 40px;
+    }
 }

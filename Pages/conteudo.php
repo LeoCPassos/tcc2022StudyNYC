@@ -35,7 +35,7 @@ $materias = $p->fetchAll();
                 $p->execute([$materia['tb06_id_disciplina']]);
                 $posts = $p->fetchAll();
 
-                echo '<div class="lista row" style="height: 600px;">';
+                echo '<div class="conteiner lista" style="height: 600px; border-color: var(--text-color); border: 4px solid;">';
                 // Checa se há algum post nessa matéria
                 if ($posts != array()) {
                     foreach ($posts as $post) {
@@ -49,9 +49,21 @@ $materias = $p->fetchAll();
                         echo '<label style="float: right; color: var(--text-color);">' . $post["tb07_nome_serie"] . '</label>';
                         echo '</div>';
                         echo '</a>';
+                        // echo '<a href="?page=conteudo&post=' . $post['tb04_Id_Conteudo'] . '" alt="' . $post['tb04_serie'] . '">';
+                        // echo '    <div class="row post">';
+                        // echo '        <div class="col-md-1 col-sm-1">';
+                        // echo '            <img src="' . $img . '" style="width: 80px;height: 80px;">';
+                        // echo '        </div>';
+                        // echo '        <div class="col-md-9 col-sm-2">';
+                        // echo '            <label class="text-truncate">' . $post["tb04_titulo"] . '</label>';
+                        // echo '        </div>';
+                        // echo '        <div class="col-md-2 col-sm-1">';
+                        // echo '            <label style="float: right; color: var(--text-color);">' . $post["tb07_nome_serie"] . '</label>';
+                        // echo '        </div>';
+                        // echo '    </div>';
+                        // echo '</a>';
                     }
-                }
-                else{
+                } else {
                     // Se não tiver, mostra na tela uma mensagem dizendo que não há matérias
                     echo '<div class="col-12" style="margin-top: 60px;">';
                     echo '<h2 style="text-align: center;">Está vazio...</h2>';
@@ -61,6 +73,8 @@ $materias = $p->fetchAll();
             }
 
             ?>
+
+
 
         </div>
     </div>
